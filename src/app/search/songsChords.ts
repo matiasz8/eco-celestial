@@ -1,15 +1,15 @@
-const specialOccasions = [
+export const specialOccasions = [
+  "Casamientos",
   "Bautismos",
   "Comuniones",
   "Confirmaciones",
-  "Casamientos",
-  "Funerales",
-  "Fiestas Patronales",
+  "Primeras Comuniones",
+  "Bendiciones",
+  "Consagraciones",
+  "Dedicaciones",
   "Aniversarios",
-  "Procesiones",
-  "Adoración",
-  "Consagraciones"
-]
+  "Celebraciones Especiales"
+];
 
 const songs = [
   {
@@ -61,7 +61,12 @@ const songs = [
     categories: {
       massParts: ["Santo"],
       liturgicalSeasons: ["Tiempo Ordinario", "Pascua"],
-      specialOccasions: ["Bautismos", "Comuniones", "Confirmaciones", "Casamientos"],
+      specialOccasions: [
+        "Bautismos",
+        "Comuniones",
+        "Confirmaciones",
+        "Casamientos",
+      ],
     },
   },
 ];

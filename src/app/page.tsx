@@ -1,5 +1,9 @@
 import Link from "next/link";
-import { MagnifyingGlassIcon, PlusIcon, MusicalNoteIcon } from "@heroicons/react/24/outline";
+import {
+  MagnifyingGlassIcon,
+  PlusIcon,
+  MusicalNoteIcon,
+} from "@heroicons/react/24/outline";
 
 export default function HomePage() {
   return (
@@ -12,23 +16,25 @@ export default function HomePage() {
               <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center">
                 <MusicalNoteIcon className="w-6 h-6 text-white" />
               </div>
-              <h1 className="text-2xl font-bold text-gray-900">Eco Celestial</h1>
+              <h1 className="text-2xl font-bold text-gray-900">
+                Eco Celestial
+              </h1>
             </div>
             <div className="hidden md:flex items-center space-x-8">
-              <Link 
-                href="/search" 
+              <Link
+                href="/search"
                 className="text-gray-700 hover:text-cyan-600 transition-colors font-medium"
               >
                 Buscar
               </Link>
-              <Link 
-                href="/add" 
+              <Link
+                href="/add"
                 className="text-gray-700 hover:text-cyan-600 transition-colors font-medium"
               >
                 Agregar
               </Link>
-              <Link 
-                href="/lyrics" 
+              <Link
+                href="/lyrics"
                 className="text-gray-700 hover:text-cyan-600 transition-colors font-medium"
               >
                 Letras
@@ -45,12 +51,14 @@ export default function HomePage() {
             <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
               Cancionero
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600">
-                {" "}Litúrgico Digital
+                {" "}
+                Litúrgico Digital
               </span>
             </h2>
             <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
-              Encuentra, transponé y gestioná canciones litúrgicas con nuestra herramienta 
-              moderna diseñada para músicos y comunidades religiosas.
+              Encuentra, transponé y gestioná canciones litúrgicas con nuestra
+              herramienta moderna diseñada para músicos y comunidades
+              religiosas.
             </p>
 
             {/* Feature Cards */}
@@ -59,10 +67,12 @@ export default function HomePage() {
                 <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center mb-6 mx-auto">
                   <MagnifyingGlassIcon className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Búsqueda Inteligente</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  Búsqueda Inteligente
+                </h3>
                 <p className="text-gray-600">
-                  Encuentra canciones por título, parte de la misa, tiempo litúrgico 
-                  y celebraciones especiales con filtros avanzados.
+                  Encuentra canciones por título, parte de la misa, tiempo
+                  litúrgico y celebraciones especiales con filtros avanzados.
                 </p>
               </div>
 
@@ -70,10 +80,12 @@ export default function HomePage() {
                 <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center mb-6 mx-auto">
                   <MusicalNoteIcon className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Transposición Musical</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  Transposición Musical
+                </h3>
                 <p className="text-gray-600">
-                  Transpone acordes automáticamente para adaptar las canciones 
-                  a diferentes tonalidades y voces.
+                  Transpone acordes automáticamente para adaptar las canciones a
+                  diferentes tonalidades y voces.
                 </p>
               </div>
 
@@ -81,10 +93,12 @@ export default function HomePage() {
                 <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6 mx-auto">
                   <PlusIcon className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Gestión Personal</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  Gestión Personal
+                </h3>
                 <p className="text-gray-600">
-                  Agrega y guarda tus propias canciones para crear 
-                  tu biblioteca personal de música litúrgica.
+                  Agrega y guarda tus propias canciones para crear tu biblioteca
+                  personal de música litúrgica.
                 </p>
               </div>
             </div>
@@ -114,7 +128,9 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div className="grid md:grid-cols-4 gap-8 text-center">
               <div>
-                <div className="text-3xl font-bold text-cyan-600 mb-2">100+</div>
+                <div className="text-3xl font-bold text-cyan-600 mb-2">
+                  100+
+                </div>
                 <div className="text-gray-600">Canciones Disponibles</div>
               </div>
               <div>
@@ -146,16 +162,37 @@ export default function HomePage() {
                 <h3 className="text-xl font-bold">Eco Celestial</h3>
               </div>
               <p className="text-gray-400">
-                Herramienta digital para la gestión y búsqueda de música litúrgica, 
-                diseñada para músicos y comunidades religiosas.
+                Herramienta digital para la gestión y búsqueda de música
+                litúrgica, diseñada para músicos y comunidades religiosas.
               </p>
             </div>
             <div>
               <h4 className="text-lg font-semibold mb-4">Navegación</h4>
               <ul className="space-y-2">
-                <li><Link href="/search" className="text-gray-400 hover:text-white transition-colors">Buscar Canciones</Link></li>
-                <li><Link href="/add" className="text-gray-400 hover:text-white transition-colors">Agregar Canción</Link></li>
-                <li><Link href="/lyrics" className="text-gray-400 hover:text-white transition-colors">Ver Letras</Link></li>
+                <li>
+                  <Link
+                    href="/search"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    Buscar Canciones
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/add"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    Agregar Canción
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/lyrics"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    Ver Letras
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>
@@ -169,10 +206,13 @@ export default function HomePage() {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 Eco Celestial. Desarrollado con ❤️ para la comunidad litúrgica.</p>
+            <p>
+              &copy; 2025 Eco Celestial. Desarrollado con ❤️ para la comunidad
+              litúrgica.
+            </p>
           </div>
         </div>
       </footer>
     </div>
   );
-} 
+}

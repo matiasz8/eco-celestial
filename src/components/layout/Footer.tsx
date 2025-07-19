@@ -14,16 +14,37 @@ export function Footer() {
               <h3 className="text-xl font-bold">Eco Celestial</h3>
             </div>
             <p className="text-gray-400">
-              Herramienta digital para la gestión y búsqueda de música litúrgica, 
-              diseñada para músicos y comunidades religiosas.
+              Herramienta digital para la gestión y búsqueda de música
+              litúrgica, diseñada para músicos y comunidades religiosas.
             </p>
           </div>
           <div>
             <h4 className="text-lg font-semibold mb-4">Navegación</h4>
             <ul className="space-y-2">
-              <li><Link href="/search" className="text-gray-400 hover:text-white transition-colors">Buscar Canciones</Link></li>
-              <li><Link href="/add" className="text-gray-400 hover:text-white transition-colors">Agregar Canción</Link></li>
-              <li><Link href="/lyrics" className="text-gray-400 hover:text-white transition-colors">Ver Letras</Link></li>
+              <li>
+                <Link
+                  href="/search"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Buscar Canciones
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/add"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Agregar Canción
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/lyrics"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Ver Letras
+                </Link>
+              </li>
             </ul>
           </div>
           <div>
@@ -37,9 +58,12 @@ export function Footer() {
           </div>
         </div>
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2025 Eco Celestial. Desarrollado con ❤️ para la comunidad litúrgica.</p>
+          <p>
+            &copy; 2025 Eco Celestial. Desarrollado con ❤️ para la comunidad
+            litúrgica.
+          </p>
         </div>
       </div>
     </footer>
   );
-} 
+}

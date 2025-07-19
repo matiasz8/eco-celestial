@@ -17,10 +17,19 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: {
     default: "Eco Celestial - Cancionero Litúrgico Digital",
-    template: "%s | Eco Celestial"
+    template: "%s | Eco Celestial",
   },
-  description: "Herramienta digital para buscar, transponer y gestionar canciones litúrgicas. Diseñada para músicos y comunidades religiosas.",
-  keywords: ["liturgia", "música", "canciones", "iglesia", "acordes", "transposición", "cancionero"],
+  description:
+    "Herramienta digital para buscar, transponer y gestionar canciones litúrgicas. Diseñada para músicos y comunidades religiosas.",
+  keywords: [
+    "liturgia",
+    "música",
+    "canciones",
+    "iglesia",
+    "acordes",
+    "transposición",
+    "cancionero",
+  ],
   authors: [{ name: "Eco Celestial Team" }],
   creator: "Eco Celestial",
   publisher: "Eco Celestial",
@@ -32,7 +41,8 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://eco-celestial.vercel.app"),
   openGraph: {
     title: "Eco Celestial - Cancionero Litúrgico Digital",
-    description: "Herramienta digital para buscar, transponer y gestionar canciones litúrgicas",
+    description:
+      "Herramienta digital para buscar, transponer y gestionar canciones litúrgicas",
     url: "https://eco-celestial.vercel.app",
     siteName: "Eco Celestial",
     locale: "es_AR",
@@ -41,7 +51,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Eco Celestial - Cancionero Litúrgico Digital",
-    description: "Herramienta digital para buscar, transponer y gestionar canciones litúrgicas",
+    description:
+      "Herramienta digital para buscar, transponer y gestionar canciones litúrgicas",
   },
   robots: {
     index: true,
@@ -75,9 +86,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className="antialiased bg-white text-gray-900">
-        <div id="root">
-          {children}
-        </div>
+        <div id="root">{children}</div>
       </body>
     </html>
   );

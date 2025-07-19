@@ -1,11 +1,31 @@
-
 const SPANISH_CHORDS = [
-  "DO", "DO#", "RE", "RE#", "MI", "FA", "FA#", "SOL", "SOL#", "LA", "LA#", "SI",
+  "DO",
+  "DO#",
+  "RE",
+  "RE#",
+  "MI",
+  "FA",
+  "FA#",
+  "SOL",
+  "SOL#",
+  "LA",
+  "LA#",
+  "SI",
 ];
 
 const ENGLISH_TO_SPANISH: Record<string, string> = {
-  "C": "DO", "C#": "DO#", "D": "RE", "D#": "RE#", "E": "MI",
-  "F": "FA", "F#": "FA#", "G": "SOL", "G#": "SOL#", "A": "LA", "A#": "LA#", "B": "SI"
+  C: "DO",
+  "C#": "DO#",
+  D: "RE",
+  "D#": "RE#",
+  E: "MI",
+  F: "FA",
+  "F#": "FA#",
+  G: "SOL",
+  "G#": "SOL#",
+  A: "LA",
+  "A#": "LA#",
+  B: "SI",
 };
 
 const SPANISH_TO_ENGLISH: Record<string, string> = Object.fromEntries(
@@ -13,7 +33,9 @@ const SPANISH_TO_ENGLISH: Record<string, string> = Object.fromEntries(
 );
 
 function extractRootAndSuffix(chord: string): [string, string] {
-  const match = chord.match(/^((?:DO#?|RE#?|MI|FA#?|SOL#?|LA#?|SI)|(?:[A-G][#b]?))(.*)$/i);
+  const match = chord.match(
+    /^((?:DO#?|RE#?|MI|FA#?|SOL#?|LA#?|SI)|(?:[A-G][#b]?))(.*)$/i
+  );
   if (match) {
     return [match[1].toUpperCase(), match[2]];
   }
@@ -25,7 +47,7 @@ function normalizeToSpanish(root: string): string {
 }
 
 function transposeRoot(root: string, semitones: number): string {
-  let index = SPANISH_CHORDS.indexOf(normalizeToSpanish(root));
+  const index = SPANISH_CHORDS.indexOf(normalizeToSpanish(root));
   if (index !== -1) {
     const newIndex = (index + semitones + 12) % 12;
     return SPANISH_CHORDS[newIndex];
@@ -41,7 +63,7 @@ export function transposeSong(
     if (!chord || chord.trim() === "") return { chord, text };
     const parts = chord.split(/\s+/);
     const transposed = parts
-      .map((c) => {
+      .map(c => {
         const [root, suffix] = extractRootAndSuffix(c);
         const newRoot = transposeRoot(root, semitones);
         return `${newRoot}${suffix}`;
@@ -59,7 +81,7 @@ export function convertNotation(
     if (!chord || chord.trim() === "") return { chord, text };
     const parts = chord.split(/\s+/);
     const converted = parts
-      .map((c) => {
+      .map(c => {
         const [root, suffix] = extractRootAndSuffix(c);
         const mapped = toSpanish
           ? ENGLISH_TO_SPANISH[root] || root
