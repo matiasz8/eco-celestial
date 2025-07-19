@@ -39,6 +39,14 @@ export function Footer() {
               </li>
               <li>
                 <Link
+                  href="/edit"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Editar Canciones
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/lyrics"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
