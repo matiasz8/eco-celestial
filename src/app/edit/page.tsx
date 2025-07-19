@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import {
@@ -21,48 +21,21 @@ interface Song {
   key: string;
   tempo: number;
   lastModified: string;
+  lyrics?: string;
 }
 
 export default function EditPage() {
-  const [songs, setSongs] = useState<Song[]>([
-    {
-      id: "1",
-      title: "Aleluya de Pascua",
-      artist: "Anónimo",
-      category: "Aclamación",
-      liturgicalTime: "Pascua",
-      key: "C",
-      tempo: 120,
-      lastModified: "2025-01-15",
-    },
-    {
-      id: "2",
-      title: "Gloria a Dios",
-      artist: "Comunidad",
-      category: "Gloria",
-      liturgicalTime: "Domingo",
-      key: "G",
-      tempo: 100,
-      lastModified: "2025-01-10",
-    },
-    {
-      id: "3",
-      title: "Santo, Santo, Santo",
-      artist: "Tradicional",
-      category: "Santo",
-      liturgicalTime: "Eucaristía",
-      key: "D",
-      tempo: 90,
-      lastModified: "2025-01-08",
-    },
-  ]);
+  const [isClient, setIsClient] = useState(false);
+  const [songs, setSongs] = useState<Song[]>([]);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [editingSong, setEditingSong] = useState<Song | null>(null);
+  const [viewingLyrics, setViewingLyrics] = useState<Song | null>(null);
 
   const categories = [
     "all",
+    "Canto",
     "Aclamación",
     "Gloria",
     "Santo",
@@ -77,6 +50,11 @@ export default function EditPage() {
     "Eucaristía",
     "Adviento",
   ];
+
+  // Evitar problemas de hidratación
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const filteredSongs = songs.filter(song => {
     const matchesSearch =
@@ -114,6 +92,25 @@ export default function EditPage() {
   const handleCancel = () => {
     setEditingSong(null);
   };
+
+  const handleViewLyrics = (song: Song) => {
+    setViewingLyrics(song);
+  };
+
+  // Renderizar un estado de carga mientras se hidrata
+  if (!isClient) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-cyan-100">
+        <Header />
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex items-center justify-center h-64">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-600"></div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-cyan-100">
@@ -170,99 +167,122 @@ export default function EditPage() {
 
         {/* Songs List */}
         <div className="bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl border border-white/50 overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50/50">
-                <tr>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
-                    Título
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
-                    Artista
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
-                    Categoría
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
-                    Tiempo Litúrgico
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
-                    Tonalidad
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
-                    Tempo
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
-                    Última Modificación
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
-                    Acciones
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200/50">
-                {filteredSongs.map(song => (
-                  <tr
-                    key={song.id}
-                    className="hover:bg-gray-50/50 transition-colors"
-                  >
-                    <td className="px-6 py-4">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center">
-                          <MusicalNoteIcon className="w-4 h-4 text-white" />
-                        </div>
-                        <span className="font-medium text-gray-900">
-                          {song.title}
-                        </span>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 text-gray-600">{song.artist}</td>
-                    <td className="px-6 py-4">
-                      <span className="inline-flex px-3 py-1 text-sm font-medium bg-cyan-100 text-cyan-800 rounded-full">
-                        {song.category}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 text-gray-600">
-                      {song.liturgicalTime}
-                    </td>
-                    <td className="px-6 py-4">
-                      <span className="inline-flex px-3 py-1 text-sm font-medium bg-blue-100 text-blue-800 rounded-full">
-                        {song.key}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 text-gray-600">
-                      {song.tempo} BPM
-                    </td>
-                    <td className="px-6 py-4 text-gray-600">
-                      {song.lastModified}
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex items-center space-x-2">
-                        <button
-                          onClick={() => handleEdit(song)}
-                          className="inline-flex items-center px-3 py-2 text-sm font-medium text-cyan-600 hover:text-cyan-700 hover:bg-cyan-50 rounded-lg transition-colors"
-                        >
-                          <PencilIcon className="w-4 h-4 mr-1" />
-                          Editar
-                        </button>
-                        <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">
-                          <EyeIcon className="w-4 h-4 mr-1" />
-                          Ver
-                        </button>
-                        <button
-                          onClick={() => handleDelete(song.id)}
-                          className="inline-flex items-center px-3 py-2 text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors"
-                        >
-                          <TrashIcon className="w-4 h-4 mr-1" />
-                          Eliminar
-                        </button>
-                      </div>
-                    </td>
+          {filteredSongs.length === 0 ? (
+            <div className="p-12 text-center">
+              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <MusicalNoteIcon className="w-8 h-8 text-gray-400" />
+              </div>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">
+                No hay canciones para modificar
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Aún no has agregado canciones a tu biblioteca personal. Usa el
+                botón &quot;Nueva Canción&quot; para comenzar a agregar tus
+                canciones.
+              </p>
+              <button className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <PlusIcon className="w-5 h-5 mr-2" />
+                Agregar Primera Canción
+              </button>
+            </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-gray-50/50">
+                  <tr>
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
+                      Título
+                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
+                      Artista
+                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
+                      Categoría
+                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
+                      Tiempo Litúrgico
+                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
+                      Tonalidad
+                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
+                      Tempo
+                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
+                      Última Modificación
+                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
+                      Acciones
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody className="divide-y divide-gray-200/50">
+                  {filteredSongs.map(song => (
+                    <tr
+                      key={song.id}
+                      className="hover:bg-gray-50/50 transition-colors"
+                    >
+                      <td className="px-6 py-4">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-8 h-8 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center">
+                            <MusicalNoteIcon className="w-4 h-4 text-white" />
+                          </div>
+                          <span className="font-medium text-gray-900">
+                            {song.title}
+                          </span>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 text-gray-600">{song.artist}</td>
+                      <td className="px-6 py-4">
+                        <span className="inline-flex px-3 py-1 text-sm font-medium bg-cyan-100 text-cyan-800 rounded-full">
+                          {song.category}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 text-gray-600">
+                        {song.liturgicalTime}
+                      </td>
+                      <td className="px-6 py-4">
+                        <span className="inline-flex px-3 py-1 text-sm font-medium bg-blue-100 text-blue-800 rounded-full">
+                          {song.key}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 text-gray-600">
+                        {song.tempo} BPM
+                      </td>
+                      <td className="px-6 py-4 text-gray-600">
+                        {song.lastModified}
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="flex items-center space-x-2">
+                          <button
+                            onClick={() => handleEdit(song)}
+                            className="inline-flex items-center px-3 py-2 text-sm font-medium text-cyan-600 hover:text-cyan-700 hover:bg-cyan-50 rounded-lg transition-colors"
+                          >
+                            <PencilIcon className="w-4 h-4 mr-1" />
+                            Editar
+                          </button>
+                          <button
+                            onClick={() => handleViewLyrics(song)}
+                            className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
+                          >
+                            <EyeIcon className="w-4 h-4 mr-1" />
+                            Ver Letra
+                          </button>
+                          <button
+                            onClick={() => handleDelete(song.id)}
+                            className="inline-flex items-center px-3 py-2 text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors"
+                          >
+                            <TrashIcon className="w-4 h-4 mr-1" />
+                            Eliminar
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
 
         {/* Edit Modal */}
@@ -416,6 +436,21 @@ export default function EditPage() {
                   </div>
                 </div>
 
+                <div className="mt-6">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Letra y Acordes
+                  </label>
+                  <textarea
+                    value={editingSong.lyrics || ""}
+                    onChange={e =>
+                      setEditingSong({ ...editingSong, lyrics: e.target.value })
+                    }
+                    rows={10}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-transparent font-mono text-sm"
+                    placeholder="Ingresa la letra y acordes de la canción..."
+                  />
+                </div>
+
                 <div className="flex justify-end space-x-4 mt-8">
                   <button
                     type="button"
@@ -432,6 +467,55 @@ export default function EditPage() {
                   </button>
                 </div>
               </form>
+            </div>
+          </div>
+        )}
+
+        {/* Lyrics Modal */}
+        {viewingLyrics && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white rounded-2xl p-8 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900">
+                    {viewingLyrics.title}
+                  </h2>
+                  <p className="text-gray-600">{viewingLyrics.artist}</p>
+                </div>
+                <button
+                  onClick={() => setViewingLyrics(null)}
+                  className="text-gray-400 hover:text-gray-600"
+                >
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              <div className="bg-gray-50 rounded-xl p-6">
+                <pre className="whitespace-pre-wrap font-mono text-sm text-gray-800 leading-relaxed">
+                  {viewingLyrics.lyrics}
+                </pre>
+              </div>
+
+              <div className="flex justify-end mt-6">
+                <button
+                  onClick={() => setViewingLyrics(null)}
+                  className="px-6 py-3 bg-gray-600 text-white font-semibold rounded-xl hover:bg-gray-700 transition-colors"
+                >
+                  Cerrar
+                </button>
+              </div>
             </div>
           </div>
         )}
