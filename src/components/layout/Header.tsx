@@ -15,7 +15,6 @@ export function Header() {
             </div>
             <h1 className="text-2xl font-bold text-gray-900">Eco Celestial</h1>
           </Link>
-
           <div className="hidden md:flex items-center space-x-8">
             <Link
               href="/search"
@@ -30,13 +29,18 @@ export function Header() {
               Agregar
             </Link>
             <Link
+              href="/edit"
+              className="text-gray-700 hover:text-cyan-600 transition-colors font-medium"
+            >
+              Editar
+            </Link>
+            <Link
               href="/lyrics"
               className="text-gray-700 hover:text-cyan-600 transition-colors font-medium"
             >
               Letras
             </Link>
           </div>
-
           {/* Mobile menu button */}
           <div className="md:hidden">
             <button
@@ -60,7 +64,6 @@ export function Header() {
             </button>
           </div>
         </div>
-
         {/* Mobile menu */}
         <div className="md:hidden hidden">
           <div className="px-2 pt-2 pb-3 space-y-1">
@@ -75,6 +78,12 @@ export function Header() {
               className="block px-3 py-2 text-gray-700 hover:text-cyan-600 transition-colors"
             >
               Agregar
+            </Link>
+            <Link
+              href="/edit"
+              className="block px-3 py-2 text-gray-700 hover:text-cyan-600 transition-colors"
+            >
+              Editar
             </Link>
             <Link
               href="/lyrics"
