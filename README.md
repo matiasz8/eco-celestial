@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Eco Celestial - Cancionero Litúrgico Digital
 
-## Getting Started
+Una aplicación web moderna para buscar y gestionar canciones litúrgicas, desarrollada con Next.js 15 y TypeScript.
 
-First, run the development server:
+## 🎵 Características
+
+- **Búsqueda inteligente**: Encuentra canciones por título, parte de la misa, tiempo litúrgico y celebraciones especiales
+- **Transposición musical**: Transpone acordes automáticamente para adaptar las canciones a diferentes tonalidades
+- **Notación dual**: Soporte para notación musical en español e inglés
+- **Gestión personal**: Agrega y guarda tus propias canciones
+- **Interfaz moderna**: Diseño responsive con animaciones suaves
+- **Filtros avanzados**: Filtra por categorías litúrgicas específicas
+
+## 🚀 Tecnologías
+
+- **Framework**: Next.js 15 con App Router
+- **Lenguaje**: TypeScript
+- **Estilos**: Tailwind CSS v4
+- **Iconos**: Heroicons
+- **Estado**: React Hooks
+- **Almacenamiento**: LocalStorage
+
+## 📦 Instalación
+
+1. **Clona el repositorio**
+
+   ```bash
+   git clone <repository-url>
+   cd eco-celestial
+   ```
+
+2. **Instala las dependencias**
+
+   ```bash
+   pnpm install
+   ```
+
+3. **Ejecuta el servidor de desarrollo**
+
+   ```bash
+   pnpm dev
+   ```
+
+4. **Abre tu navegador**
+   Navega a [http://localhost:3000](http://localhost:3000)
+
+## 🛠️ Scripts Disponibles
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm dev          # Servidor de desarrollo con Turbopack
+pnpm build        # Construcción para producción
+pnpm start        # Servidor de producción
+pnpm lint         # Verificación de código
+pnpm format       # Formateo con Prettier
+pnpm test         # Ejecutar tests
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📁 Estructura del Proyecto
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+├── app/
+│   ├── layout.tsx          # Layout principal
+│   ├── globals.css         # Estilos globales
+│   ├── page.tsx            # Página principal
+│   ├── search/             # Buscador de canciones
+│   ├── add/                # Agregar canciones
+│   └── lyrics/             # Vista de letras
+├── components/             # Componentes reutilizables
+├── lib/                    # Utilidades y helpers
+├── types/                  # Definiciones de tipos
+└── data/                   # Datos de canciones
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🎼 Uso
 
-## Learn More
+### Buscar Canciones
 
-To learn more about Next.js, take a look at the following resources:
+1. Navega a la página principal
+2. Escribe el nombre de la canción en el buscador
+3. Usa los filtros para refinar la búsqueda por:
+   - Partes de la misa (Entrada, Perdón, Aleluya, etc.)
+   - Tiempo litúrgico (Adviento, Cuaresma, etc.)
+   - Celebraciones especiales (Bautismos, Comuniones, etc.)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Transponer Acordes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Selecciona una canción
+2. Usa los botones de transposición para cambiar la tonalidad
+3. Cambia entre notación española e inglesa
 
-## Deploy on Vercel
+### Agregar Canciones
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Ve a la página "Agregar Canción"
+2. Completa el título y pega la letra con acordes
+3. Guarda la canción para uso personal
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🤝 Contribuir
+
+1. Fork el proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+## 📝 Licencia
+
+Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
+
+## 🙏 Agradecimientos
+
+- Comunidad litúrgica por las canciones
+- Next.js por el framework
+- Tailwind CSS por los estilos
+- Heroicons por los iconos
+
+---
+
+Desarrollado con ❤️ para la comunidad litúrgica
