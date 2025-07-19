@@ -1,4 +1,9 @@
-import type { AppConfig, MassPart, LiturgicalSeason, SpecialOccasion } from "@/types";
+import type {
+  AppConfig,
+  MassPart,
+  LiturgicalSeason,
+  SpecialOccasion,
+} from "@/types";
 
 export const APP_CONFIG: AppConfig = {
   defaultTransposeOffset: 0,
@@ -20,6 +25,7 @@ export const MASS_PARTS: MassPart[] = [
 ];
 
 export const LITURGICAL_SEASONS: LiturgicalSeason[] = [
+  "Todos",
   "Adviento",
   "Cuaresma",
   "Tiempo Ordinario",
@@ -40,7 +46,20 @@ export const SPECIAL_OCCASIONS: SpecialOccasion[] = [
 ];
 
 export const CHORDS = {
-  spanish: ["Do", "Do#", "Re", "Re#", "Mi", "Fa", "Fa#", "Sol", "Sol#", "La", "La#", "Si"],
+  spanish: [
+    "Do",
+    "Do#",
+    "Re",
+    "Re#",
+    "Mi",
+    "Fa",
+    "Fa#",
+    "Sol",
+    "Sol#",
+    "La",
+    "La#",
+    "Si",
+  ],
   english: ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"],
 };
 
@@ -68,4 +87,4 @@ export const ANIMATIONS = {
     EASE_OUT: "cubic-bezier(0, 0, 0.2, 1)",
     EASE_IN: "cubic-bezier(0.4, 0, 1, 1)",
   },
-} as const; 
+} as const;

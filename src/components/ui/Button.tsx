@@ -1,32 +1,56 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | "gradient" | "glass";
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?:
+    | "default"
+    | "destructive"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | "link"
+    | "gradient"
+    | "glass";
   size?: "default" | "sm" | "lg" | "xl" | "icon";
   loading?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = "default", size = "default", loading = false, disabled, children, ...props }, ref) => {
+  (
+    {
+      className,
+      variant = "default",
+      size = "default",
+      loading = false,
+      disabled,
+      children,
+      ...props
+    },
+    ref
+  ) => {
     const isDisabled = disabled || loading;
 
-    const baseClasses = "inline-flex items-center justify-center rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
-    
+    const baseClasses =
+      "inline-flex items-center justify-center rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
+
     const variantClasses = {
-      default: "bg-cyan-600 text-white hover:bg-cyan-700",
-      destructive: "bg-red-600 text-white hover:bg-red-700",
-      outline: "border border-gray-300 hover:bg-gray-50",
-      secondary: "bg-gray-100 text-gray-900 hover:bg-gray-200",
-      ghost: "hover:bg-gray-100",
-      link: "underline-offset-4 hover:underline text-cyan-600",
-      gradient: "bg-gradient-to-r from-cyan-600 to-blue-600 text-white hover:shadow-lg transition-all duration-300 transform hover:scale-105",
-      glass: "bg-white/80 backdrop-blur-sm text-gray-900 border border-white/50 hover:shadow-lg transition-all duration-300",
+      default: "bg-cyan-600 text-white hover:bg-cyan-700 shadow-sm",
+      destructive: "bg-red-600 text-white hover:bg-red-700 shadow-sm",
+      outline:
+        "border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 hover:border-gray-400 shadow-sm",
+      secondary: "bg-gray-100 text-gray-900 hover:bg-gray-200 shadow-sm",
+      ghost: "text-gray-700 hover:bg-gray-100 hover:text-gray-900",
+      link: "text-cyan-600 hover:text-cyan-700 underline-offset-4 hover:underline",
+      gradient:
+        "bg-gradient-to-r from-cyan-600 to-blue-600 text-white hover:shadow-lg transition-all duration-300 transform hover:scale-105",
+      glass:
+        "bg-white/90 backdrop-blur-sm text-gray-900 border border-white/50 hover:bg-white hover:shadow-lg transition-all duration-300",
     };
 
     const sizeClasses = {
       default: "h-10 py-2 px-4",
-      sm: "h-9 px-3 rounded-md",
+      sm: "h-9 px-3 rounded-md text-sm",
       lg: "h-11 px-8 rounded-md",
       xl: "h-12 px-10 rounded-lg text-base",
       icon: "h-10 w-10",
@@ -74,4 +98,4 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
 Button.displayName = "Button";
 
-export { Button }; 
+export { Button };
